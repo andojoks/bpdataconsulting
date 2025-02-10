@@ -160,32 +160,32 @@
                 <li>
                     <a href="/"
                         class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
-                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>Home
+                        <i class="fa fa-arrow-right text-blue-500 mr-2"></i>Home
                     </a>
                 </li>
                 <li>
                     <a href="/about"
                         class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
-                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>About Us
+                        <i class="fa fa-arrow-right text-blue-500 mr-2"></i>About Us
                     </a>
                 </li>
                 <li>
                     <a href="/services"
                         class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
-                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>Services
+                        <i class="fa fa-arrow-right text-blue-500 mr-2"></i>Services
                     </a>
                 </li>
                 <li>
                     <a href="/contacts"
                         class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
-                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>Contact Us
+                        <i class="fa fa-arrow-right text-blue-500 mr-2"></i>Contact Us
                     </a>
                 </li>
             </ul>
         </div>
         <!-- Column 4: Get In Touch -->
         <div class="flex flex-col items-center">
-            <h4 class="text-lg font-semibold text-white mb-2">Need Assistance?</h4>
+c
             <p class="text-gray-400 mb-4 text-center">
                 Our team is here to help with any inquiries or support you may need.
             </p>
@@ -195,9 +195,8 @@
             </button>
         </div>
     </div>
-    </div>
     <div class="mt-8 text-center text-gray-500 text-sm">
-        &copy  <span id="current-year"></span> B&amp;P Data Consulting. All Rights Reserved.
+        &copy <span id="current-year"></span> B&amp;P Data Consulting. All Rights Reserved.
     </div>
 </footer>
 
@@ -208,48 +207,9 @@
 
 <!-- PAGE-SPECIFIC SCRIPTS (optional) -->
 <script>
-
-    // Sticky Navbar Transition
-    const header = document.getElementById("header");
-    const logo = header.querySelector("a");
-    const navLinksContainer = document.getElementById("navLinks");
-
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById("menuBtn");
     // const mobileMenu = document.getElementById("mobileMenu");
 
-
-    // Function to update header style based on scroll position
-    function updateHeaderStyle() {
-        if (window.scrollY > 10) {
-            header.classList.remove("bg-transparent");
-            header.classList.add("bg-white", "shadow-md");
-            logo.classList.remove("text-white");
-            logo.classList.add("text-gray-800");
-            navLinksContainer.classList.remove("text-white");
-            navLinksContainer.classList.add("text-gray-800");
-            menuBtn.classList.remove("text-white");
-            menuBtn.classList.add("text-gray-800");
-        } else {
-            header.classList.add("bg-transparent");
-            header.classList.remove("bg-white", "shadow-md");
-            logo.classList.add("text-white");
-            logo.classList.remove("text-gray-800");
-            navLinksContainer.classList.add("text-white");
-            navLinksContainer.classList.remove("text-gray-800");
-            menuBtn.classList.add("text-white");
-            menuBtn.classList.remove("text-gray-800");
-        }
-    }
-
-    // Listen for scroll events
-    window.addEventListener("scroll", updateHeaderStyle);
-
-
     document.addEventListener("DOMContentLoaded", () => {
-        // Ensure header style is updated on page load
-        updateHeaderStyle
-
         // Get the current year
         const currentYear = new Date().getFullYear();
         // Set the current year in the footer
@@ -306,6 +266,11 @@
     footerContactBtn.addEventListener("click", () => {
         contactModal.classList.add("active");
     });
+
+    //function to activate contact modal
+    function showContactModal() {
+        contactModal.classList.add("active");
+    }
 
     closeContactModalBtn.addEventListener("click", () => {
         contactModal.classList.remove("active");

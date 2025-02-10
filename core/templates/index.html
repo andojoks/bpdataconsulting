@@ -29,7 +29,7 @@
     animation: slow-bounce 2.5s infinite;
   }
 </style>
-{% endblock %}
+{% endblock header%}
 
 {% block content %}
 
@@ -122,7 +122,7 @@
 
     <!-- What We Do Section -->
     <div>
-      <h2 class="text-3xl text-center font-bold mb-4 uppercase" data-aos="fade-up">What We Do</h2>
+      <h2 class="text-3xl text-center font-bold mb-4 uppercase" data-aos="fade-up">Our Services</h2>
       <div class="grid md:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
         <!-- Card 1 -->
         <div
@@ -222,8 +222,19 @@
     </div>
   </div>
 </section>
+{% endblock content %}
+
+
+<!-- Footer Block -->
+{% block footer %}
 
 {% include 'partials/_footer.html' %}
+
+{% endblock footer%}
+
+
+<!-- Scripts Block -->
+{% block script %}
 
 <!-- Vanta and Three.js libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
@@ -247,7 +258,7 @@
   // VANTA.NET Background Effect on #hero with updated colors:
   VANTA.NET({
     el: "#hero",
-    color: 0xffffff,           // Whitish net lines
+    color: 0x71797E, //0xA9A9A9, //0xffffff,       
     backgroundColor: 0x0d1b2a, // Dark shade of primary blue
     points: 12.00,
     maxDistance: 20.00,
@@ -277,5 +288,46 @@
     }
   });
 
+
+  // Sticky Navbar Transition
+  const header = document.getElementById("header");
+  const logo = header.querySelector("a");
+  const navLinksContainer = document.getElementById("navLinks");
+
+  // Mobile Menu Toggle
+  const menuBtn = document.getElementById("menuBtn");
+  // const mobileMenu = document.getElementById("mobileMenu");
+
+
+  // Function to update header style based on scroll position
+  function updateHeaderStyle() {
+    if (window.scrollY > 10) {
+      header.classList.remove("bg-transparent");
+      header.classList.add("bg-white", "shadow-md");
+      logo.classList.remove("text-white");
+      logo.classList.add("text-gray-800");
+      navLinksContainer.classList.remove("text-white");
+      navLinksContainer.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+      menuBtn.classList.add("text-gray-800");
+    } else {
+      header.classList.add("bg-transparent");
+      header.classList.remove("bg-white", "shadow-md");
+      logo.classList.add("text-white");
+      logo.classList.remove("text-gray-800");
+      navLinksContainer.classList.add("text-white");
+      navLinksContainer.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+      menuBtn.classList.remove("text-gray-800");
+    }
+  }
+
+  // Listen for scroll events
+  window.addEventListener("scroll", updateHeaderStyle);
+
+  // Ensure header style is updated on page load
+  document.addEventListener("DOMContentLoaded", updateHeaderStyle);
+
 </script>
-{% endblock content %}
+
+{% endblock script %}

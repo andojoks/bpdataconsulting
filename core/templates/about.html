@@ -166,8 +166,18 @@
     </div>
   </div>
 </section>
+{% endblock content %}
+
+<!-- Footer Block -->
+{% block footer %}
 
 {% include 'partials/_footer.html' %}
+
+{% endblock footer%}
+
+
+<!-- Scripts Block -->
+{% block script %}
 
 <!-- Vanta and Three.js libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
@@ -222,5 +232,44 @@
       1024: { slidesPerView: 3, spaceBetween: 30 },
     }
   });
+
+  // Sticky Navbar Transition
+  const header = document.getElementById("header");
+  const logo = header.querySelector("a");
+  const navLinksContainer = document.getElementById("navLinks");
+
+  // Mobile Menu Toggle
+  const menuBtn = document.getElementById("menuBtn");
+  // const mobileMenu = document.getElementById("mobileMenu");
+
+
+  // Function to update header style based on scroll position
+  function updateHeaderStyle() {
+    if (window.scrollY > 10) {
+      header.classList.remove("bg-transparent");
+      header.classList.add("bg-white", "shadow-md");
+      logo.classList.remove("text-white");
+      logo.classList.add("text-gray-800");
+      navLinksContainer.classList.remove("text-white");
+      navLinksContainer.classList.add("text-gray-800");
+      menuBtn.classList.remove("text-white");
+      menuBtn.classList.add("text-gray-800");
+    } else {
+      header.classList.add("bg-transparent");
+      header.classList.remove("bg-white", "shadow-md");
+      logo.classList.add("text-white");
+      logo.classList.remove("text-gray-800");
+      navLinksContainer.classList.add("text-white");
+      navLinksContainer.classList.remove("text-gray-800");
+      menuBtn.classList.add("text-white");
+      menuBtn.classList.remove("text-gray-800");
+    }
+  }
+
+  // Listen for scroll events
+  window.addEventListener("scroll", updateHeaderStyle);
+
+  document.addEventListener("DOMContentLoaded", updateHeaderStyle);
+
 </script>
-{% endblock content %}
+{% endblock script%}

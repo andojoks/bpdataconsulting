@@ -3,8 +3,8 @@ from .models import Service, Contact, Product, Client, Subscription
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('service_name', 'price', 'status', 'date_included', 'on_promotion', 'discount')
-    search_fields = ('service_name', 'description')
+    list_display = ('name', 'price', 'status', 'date_included', 'on_promotion', 'discount')
+    search_fields = ('name', 'description')
     list_filter = ('status', 'on_promotion')
 
 

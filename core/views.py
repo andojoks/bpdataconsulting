@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Service
 from django.contrib import messages
 from django.http import HttpResponseNotAllowed
@@ -19,18 +19,6 @@ def index(request):
         'open_modal': open_modal,
     })
 
-# def service_list(request):
-#     """
-#     Protected view that lists all services (service.html).
-#     If you want this accessible to everyone (no login needed), 
-#     remove the @login_required decorator.
-#     """
-#     services = Service.objects.all()
-#     context = {
-#         'services': services
-#     }
-#     return render(request, 'service.html', context)
-
 def services(request):
     """
     Protected view that lists all services (service.html).
@@ -38,7 +26,20 @@ def services(request):
     remove the @login_required decorator.
     """
 
-    return render(request, 'services.html')
+    # helper function to get session data to rebuild form 
+    form, open_modal = restore_form_from_session(request.session, ContactForm)
+
+    services = Service.objects.all()
+
+    return render(request, 'services.html', {
+        'form': form,
+        'open_modal': open_modal,
+        'services' : services
+    })
+
+def service_detail(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+    return render(request, 'service_details.html', {'service': service})
 
 def about(request):
     form, open_modal = restore_form_from_session(request.session, ContactForm)
@@ -47,10 +48,6 @@ def about(request):
         'form': form,
         'open_modal': open_modal,
     })
-
-
-from .forms import ContactForm
-
 
 def create_contact(request):
     """

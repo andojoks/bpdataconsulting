@@ -1,19 +1,19 @@
 <!-- templates/partials/_header.html -->
-<header id="header" class="fixed w-full top-0 z-50 bg-transparent transition-colors duration-300 ease-in-out">
+<header id="header" class="fixed w-full top-0 z-50 bg-white transition-colors duration-300 ease-in-out">
     <nav class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         <!-- Logo -->
-        <a href="/" class="text-xl font-bold text-white">B&amp;P Data Consulting</a>
+        <a href="/" class="text-xl font-bold">B&amp;P Data Consulting</a>
 
         <!-- Mobile Hamburger -->
-        <button id="menuBtn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+        <button id="menuBtn" class="md:hidden focus:outline-none" aria-label="Toggle menu">
             <i class="fas fa-bars text-2xl"></i>
         </button>
 
         <!-- Desktop Menu -->
-        <ul id="navLinks" class="hidden md:flex space-x-6 text-white font-medium transition-colors duration-300">
+        <ul id="navLinks" class="hidden md:flex space-x-6 font-medium transition-colors duration-300">
             <li>
                 <a href="/" class="{% if active_page == 'home' %}
-                      bg-orange-500 text-white py-2 px-4 rounded-full
+                      bg-orange-500 py-2 px-4 rounded-full  text-white
                     {% else %}
                       hover:text-orange-500
                     {% endif %}">
@@ -22,7 +22,7 @@
             </li>
             <li>
                 <a href="/about" class="{% if active_page == 'about' %}
-                      bg-orange-500 text-white py-2 px-4 rounded-full
+                      bg-orange-500 py-2 px-4 rounded-full  text-white
                     {% else %}
                       hover:text-orange-500
                     {% endif %}">
@@ -31,7 +31,7 @@
             </li>
             <li>
                 <a href="/services/" class="{% if active_page == 'services' %}
-                      bg-orange-500 text-white py-2 px-4 rounded-full
+                      bg-orange-500 py-2 px-4 rounded-full  text-white
                     {% else %}
                       hover:text-orange-500
                     {% endif %}">
@@ -40,7 +40,7 @@
             </li>
             <!-- <li>
                 <a href="/contacts/" class="{% if active_page == 'contacts' %}
-                      bg-orange-500 text-white py-2 px-4 rounded-full
+                      bg-orange-500 py-2 px-4 rounded-full  text-white
                     {% else %}
                       hover:text-orange-500
                     {% endif %}">
