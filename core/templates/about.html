@@ -1,0 +1,226 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<style>
+  /* Hero Section (Vanta.js background will be applied here) */
+  #hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% include 'partials/_header.html' with active_page="about" %}
+
+<!-- =============== HERO SECTION =============== -->
+<section id="hero">
+  <!-- Vanta.js effect will be applied to this section -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="text-center text-white px-4" data-aos="fade-up">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">About Us</h1>
+      <p class="text-lg md:text-2xl mb-8">Pioneering Data-Driven Innovation</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ABOUT CONTENT SECTION =============== -->
+<section class="bg-white py-5">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Our Story -->
+    <div class="grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
+      <div>
+        <h2 class="text-3xl font-bold mb-4 text-center md:text-left">Our Story</h2>
+        <p class="text-gray-700 text-lg mb-4">
+          At B&amp;P Data Consulting, we believe in the transformative power of data-driven decisions. Our journey began
+          with a mission to challenge the status quo and unlock the untapped potential within organizations. We
+          specialize in restructuring data architecture and designing contemporary data collection processes tailored to
+          modern business needs. Our team is dedicated to wrangling and preprocessing both existing and new data, using
+          cutting-edge technology for exploratory analysis that drives key business decisions and maximizes return on
+          investment.
+        </p>
+        <p class="text-gray-700 text-lg">
+          As we evolved, we expanded our expertise to include high-quality software development, custom Machine
+          Learning, and Artificial Intelligence solutions. We also prioritize security, implementing AI-powered video
+          surveillance and secure intranet networking to meet contemporary standards. Our story is one of innovation and
+          empowerment, as we support organizations in their digital transformation journeys.
+        </p>
+      </div>
+      <div class="flex justify-center" data-aos="fade-up">
+        <img src="{% static 'images/about_us.svg' %}" alt="Our Story Illustration" class="w-full max-w-md">
+      </div>
+    </div>
+
+    <!-- Mission, Vision & Values -->
+    <div class="mt-16" data-aos="fade-up" data-aos-delay="100">
+      <h2 class="text-3xl font-bold text-center mb-8">Our Core Principles</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-xl transition-transform transform hover:scale-105">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-bullseye text-4xl text-blue-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-center">Our Mission</h3>
+          <p class="text-gray-700 text-center">
+            Empower businesses with data-driven strategies that inspire growth.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-xl transition-transform transform hover:scale-105">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-lightbulb text-4xl text-yellow-500"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-center">Our Vision</h3>
+          <p class="text-gray-700 text-center">
+            Leading the transformation of data into strategic excellence.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-xl transition-transform transform hover:scale-105">
+          <div class="flex items-center justify-center mb-4">
+            <i class="fas fa-heart text-4xl text-red-500"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-center">Our Values</h3>
+          <p class="text-gray-700 text-center">
+            Innovation, integrity, and a customer-first mindset.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Choose Us -->
+    <div class="mt-16 grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up" data-aos-delay="200">
+      <div class="flex justify-center">
+        <img src="{% static 'images/why_choose_us.svg' %}" alt="Why Choose Us" class="w-full max-w-md">
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-4 text-center md:text-left">Why Choose Us?</h2>
+        <p class="text-gray-700 text-lg mb-4">
+          Choosing B&amp;P Data Consulting means partnering with an innovation-driven team that prioritizes your
+          success. We
+          offer specialized training in software engineering, data collection methodologies, and the development of ML
+          and AI solutions, empowering your employees to harness data insights for sustainable business growth.
+        </p>
+        <p class="text-gray-700 text-lg">
+          Our extensive expertise in Data Architecture, Software Engineering, and Data Analytics enables us to deliver
+          enterprise solutions that address complex challenges, including humanitarian issues. By tailoring your
+          processes and infrastructure for scientific practices, we provide you with a competitive advantage in your
+          industry. With B&amp;P Data Consulting, you not only gain access to data-driven insights but also build the
+          capacity of your team to continually discover new business opportunities over time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== TEAM SECTION (Swiper Slider) =============== -->
+<section id="team" class="py-16 bg-gray-100">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl text-center font-bold mb-8" data-aos="fade-up">Meet Our Team</h2>
+    <div class="swiper mySwiper" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <!-- Team Member 1 -->
+        <div class="swiper-slide">
+          <div class="bg-white rounded-lg p-8 text-center shadow-xl">
+            <img src="https://bpdataconsulting.com/static/web/img/team11.jpg" alt="Isabel Stewart"
+              class="w-24 h-24 rounded-full mx-auto mb-4">
+            <h3 class="text-xl font-semibold">Isabel Stewart</h3>
+            <p class="text-gray-700">CEO &amp; Managing Director</p>
+          </div>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="swiper-slide">
+          <div class="bg-white rounded-lg p-8 text-center shadow-xl">
+            <img src="https://bpdataconsulting.com/static/web/img/boris1.jpg" alt="Boris Mikwa"
+              class="w-24 h-24 rounded-full mx-auto mb-4">
+            <h3 class="text-xl font-semibold">Boris Mikwa</h3>
+            <p class="text-gray-700">Senior Data Scientist</p>
+          </div>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="swiper-slide">
+          <div class="bg-white rounded-lg p-8 text-center shadow-xl">
+            <img src="https://bpdataconsulting.com/static/web/img/team-3.jpeg" alt="Pius Ngwa"
+              class="w-24 h-24 rounded-full mx-auto mb-4">
+            <h3 class="text-xl font-semibold">Pius Ngwa</h3>
+            <p class="text-gray-700">Applied Scientist &amp; AI Innovation Lead</p>
+          </div>
+        </div>
+        <!-- Team Member 4 -->
+        <div class="swiper-slide">
+          <div class="bg-white rounded-lg p-8 text-center shadow-xl">
+            <img src="https://bpdataconsulting.com/static/web/img/team-3.jpg" alt="Innocent Ngaruye"
+              class="w-24 h-24 rounded-full mx-auto mb-4">
+            <h3 class="text-xl font-semibold">Innocent Ngaruye</h3>
+            <p class="text-gray-700">Director of AI Research &amp; Training</p>
+          </div>
+        </div>
+      </div>
+      <!-- Navigation Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_footer.html' %}
+
+<!-- Vanta and Three.js libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Swiper JS for Team Slider -->
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+<script>
+  // Initialize AOS
+  document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 200
+    });
+  });
+
+  VANTA.WAVES({
+    el: "#hero",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x0d1b2a   // Background color behind the waves
+  })
+
+  // Initialize Swiper for the Team Slider
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 30 },
+    }
+  });
+</script>
+{% endblock content %}

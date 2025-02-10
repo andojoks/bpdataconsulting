@@ -10,8 +10,8 @@ class ServiceAdmin(admin.ModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'email', 'contact_date')
-    search_fields = ('email', 'subject')
+    list_display = ('fname', 'lname', 'subject', 'email', 'contact_date')
+    search_fields = ('fname', 'lname', 'email', 'subject','contact_date')
 
 
 @admin.register(Product)

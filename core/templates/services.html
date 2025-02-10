@@ -1,0 +1,59 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+{% include 'partials/_header.html' with active_page="about" %}
+<!-- =============== CONTENT SECTION =============== -->
+<div class="container mx-auto py-8 px-5 pt-20 bg-gray-800">
+  <h2 class="text-3xl font-bold text-center mb-6 text-white">Our Services</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Service Card 1 -->
+    <div class="bg-white rounded-lg overflow-hidden shadow-lg p-6 transition-transform transform hover:scale-105">
+      <h3 class="text-xl font-semibold text-gray-800">Service Name 1</h3>
+      <p class="text-gray-600 mt-2">Short description of the service that highlights key benefits.</p>
+      <div class="mt-4">
+        <span class="text-2xl font-bold text-gray-800">$100</span>
+        <span class="text-sm text-gray-500">/ month</span>
+      </div>
+      <p class="mt-2 text-green-500">Status: Active</p>
+      <p class="mt-2 text-gray-500">Included since: Jan 2021</p>
+      <p class="mt-2 text-gray-500">Promotion: 10% off until Mar 2023</p>
+    </div>
+
+    <!-- Service Card 2 -->
+    <div class="bg-white rounded-lg overflow-hidden shadow-lg p-6 transition-transform transform hover:scale-105">
+      <h3 class="text-xl font-semibold text-gray-800">Service Name 2</h3>
+      <p class="text-gray-600 mt-2">Short description of the service that highlights key benefits.</p>
+      <div class="mt-4">
+        <span class="text-2xl font-bold text-gray-800">$150</span>
+        <span class="text-sm text-gray-500">/ month</span>
+      </div>
+      <p class="mt-2 text-red-500">Status: Suspended</p>
+      <p class="mt-2 text-gray-500">Included since: Mar 2020</p>
+    </div>
+
+    <!-- Service Card 3 -->
+    <div class="bg-white rounded-lg overflow-hidden shadow-lg p-6 transition-transform transform hover:scale-105">
+      <h3 class="text-xl font-semibold text-gray-800">Service Name 3</h3>
+      <p class="text-gray-600 mt-2">Short description of the service that highlights key benefits.</p>
+      <div class="mt-4">
+        <span class="text-2xl font-bold text-gray-800">$200</span>
+        <span class="text-sm text-gray-500">/ month</span>
+      </div>
+      <p class="mt-2 text-green-500">Status: Active</p>
+      <p class="mt-2 text-gray-500">Included since: Feb 2021</p>
+      <p class="mt-2 text-gray-500">Promotion: 15% off until Apr 2023</p>
+    </div>
+
+    <!-- Add more service cards as needed -->
+  </div>
+</div>
+
+{% include 'partials/_footer.html' %}
+
+{% endblock content %}

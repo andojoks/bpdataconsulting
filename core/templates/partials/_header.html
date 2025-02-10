@@ -1,0 +1,67 @@
+<!-- templates/partials/_header.html -->
+<header id="header" class="fixed w-full top-0 z-50 bg-transparent transition-colors duration-300 ease-in-out">
+    <nav class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="/" class="text-xl font-bold text-white">B&amp;P Data Consulting</a>
+
+        <!-- Mobile Hamburger -->
+        <button id="menuBtn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <!-- Desktop Menu -->
+        <ul id="navLinks" class="hidden md:flex space-x-6 text-white font-medium transition-colors duration-300">
+            <li>
+                <a href="/" class="{% if active_page == 'home' %}
+                      bg-orange-500 text-white py-2 px-4 rounded-full
+                    {% else %}
+                      hover:text-orange-500
+                    {% endif %}">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="{% if active_page == 'about' %}
+                      bg-orange-500 text-white py-2 px-4 rounded-full
+                    {% else %}
+                      hover:text-orange-500
+                    {% endif %}">
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="/services/" class="{% if active_page == 'services' %}
+                      bg-orange-500 text-white py-2 px-4 rounded-full
+                    {% else %}
+                      hover:text-orange-500
+                    {% endif %}">
+                    Services
+                </a>
+            </li>
+            <!-- <li>
+                <a href="/contacts/" class="{% if active_page == 'contacts' %}
+                      bg-orange-500 text-white py-2 px-4 rounded-full
+                    {% else %}
+                      hover:text-orange-500
+                    {% endif %}">
+                    Contact
+                </a>
+            </li> -->
+        </ul>
+    </nav>
+</header>
+
+<!-- MOBILE MENU & OVERLAY -->
+<div id="mobileMenu" class="fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg transform -translate-x-full
+           transition-transform duration-300 ease-in-out md:hidden z-50">
+    <button id="closeMenu" class="p-4 focus:outline-none">
+        <i class="fas fa-times"></i>
+    </button>
+    <ul class="flex flex-col p-4 space-y-2">
+        <li><a href="/" class="text-orange-500 nav-item-mobile">Home</a></li>
+        <li><a href="/about" class="nav-item-mobile hover:text-orange-500">About</a></li>
+        <li><a href="/services" class="nav-item-mobile hover:text-orange-500">Services</a></li>
+        <!-- <li><a href="/contacts" class="nav-item-mobile hover:text-orange-500">Contact</a></li> -->
+    </ul>
+</div>
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black opacity-50 hidden md:hidden z-40"></div>

@@ -1,0 +1,331 @@
+<!-- templates/partials/_footer.html -->
+
+<!-- SHOW ALERT MESSAGES AS A MODAL (if any) -->
+{% if messages %}
+<div id="messageDialogOverlay" class="modal-overlay active">
+    <div class="bg-white rounded-lg shadow-2xl p-8 max-w-xl w-full mx-4 relative" data-aos="zoom-in">
+        <!-- Loop through Django messages -->
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <h2 class="text-xl font-bold text-green-600 mb-2">Success!</h2>
+        <p class="text-gray-700 mb-4">{{ message }}</p>
+        {% elif message.tags == 'error' %}
+        <h2 class="text-xl font-bold text-red-600 mb-2">Error</h2>
+        <p class="text-gray-700 mb-4">{{ message }}</p>
+        {% else %}
+        <h2 class="text-xl font-bold text-blue-600 mb-2">Notice</h2>
+        <p class="text-gray-700 mb-4">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+        <div class="text-center mt-6">
+            <button class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded font-medium"
+                onclick="closeMessageDialog()">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- =============== CONTACT MODAL DIALOG =============== -->
+<!-- 
+    We add 'active' to .modal-overlay if either:
+      - 'open_modal' is True (set by the view when there are errors)
+      - Or you want to open it by button click (front-end JavaScript)
+  -->
+<div id="contactModal" class="modal-overlay {% if open_modal %}active{% endif %}">
+    <div class="bg-white rounded-lg shadow-2xl p-8 max-w-xl w-full mx-4 relative" data-aos="zoom-in">
+        <!-- Close button -->
+        <div class="relative sticky top-10 bg-white">
+            <button id="closeContactModal"
+                class="absolute right-0 text-gray-500 hover:text-gray-800 focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-center">Get In Touch</h2>
+        </div>
+
+
+        <!-- If the view passed in 'form', use it; otherwise create an empty fallback form -->
+        <div class="flex-1 overflow-y-auto p-1" style="max-height:90vh">
+            <form action="{% url 'create_contact' %}" method="POST" class="space-y-4">
+                {% csrf_token %}
+
+                <!-- passing the request path -->
+                <input type="hidden" name="next" value="{{ request.path }}">
+
+                <!-- First & Last Name -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- fname -->
+                    <div>
+                        <input type="text" name="fname" placeholder="First Name"
+                            class="border border-gray-300 p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value="{% if used_form %}{{ form.data.fname|default_if_none:'' }}{% endif %}" required>
+                        <!-- Field-specific errors -->
+                        {% if form and form.fname.errors %}
+                        <p class="text-red-500 text-sm mt-1">
+                            {{ form.fname.errors.0 }}
+                        </p>
+                        {% endif %}
+                    </div>
+                    <!-- lname -->
+                    <div>
+                        <input type="text" name="lname" placeholder="Last Name"
+                            class="border border-gray-300 p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value="{% if used_form %}{{ form.data.lname|default_if_none:'' }}{% endif %}" required>
+                        {% if used_form and form.lname.errors %}
+                        <p class="text-red-500 text-sm mt-1">
+                            {{ form.lname.errors.0 }}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <input type="email" name="email" placeholder="Your Email"
+                        class="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        value="{% if used_form %}{{ form.data.email|default_if_none:'' }}{% endif %}" required>
+                    {% if used_form and form.email.errors %}
+                    <p class="text-red-500 text-sm mt-1">
+                        {{ form.email.errors.0 }}
+                    </p>
+                    {% endif %}
+                </div>
+
+                <!-- Subject -->
+                <div>
+                    <input type="text" name="subject" placeholder="Subject"
+                        class="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        value="{% if used_form %}{{ form.data.subject|default_if_none:'' }}{% endif %}" required>
+                    {% if used_form and form.subject.errors %}
+                    <p class="text-red-500 text-sm mt-1">
+                        {{ form.subject.errors.0 }}
+                    </p>
+                    {% endif %}
+                </div>
+
+                <!-- Message -->
+                <div>
+                    <textarea name="message" rows="5" placeholder="Message"
+                        class="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        required>{% if used_form %}{{ form.data.message|default_if_none:'' }}{% endif %}</textarea>
+                    {% if used_form and form.message.errors %}
+                    <p class="text-red-500 text-sm mt-1">
+                        {{ form.message.errors.0 }}
+                    </p>
+                    {% endif %}
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-3 rounded font-medium hover:bg-blue-500 transition">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-gray-300 py-10">
+    <div class="max-w-7xl mx-auto px-4 grid gap-8 md:grid-cols-3">
+        <!-- Column 1: Contact Info -->
+        <div class="flex flex-col items-center md:items-start">
+            <h4 class="font-semibold  text-white text-xl mb-4">B&amp;P Data Consulting</h4>
+            <div class="flex items-center mb-3">
+                <i class="fas fa-map-marker-alt text-xl mr-3"></i>
+                <a href="https://www.google.com/maps?q=First+Floor,+Afriland+Building,+Marché+Ndogpassi+3,+Village+-+Douala"
+                    target="_blank" class="text-gray-400 hover:text-white">
+                    First Floor, Afriland Building<br>Marché Ndogpassi 3, Village - Douala
+                </a>
+            </div>
+            <div class="flex items-center mb-3">
+                <i class="fas fa-envelope text-xl mr-3"></i>
+                <a href="mailto:info@bpdataconsulting.com" class="text-gray-400 hover:text-white">
+                    info@bpdataconsulting.com
+                </a>
+            </div>
+            <div class="flex items-center">
+                <i class="fas fa-phone-alt text-xl mr-3"></i>
+                <a href="tel:+237671593128" class="text-gray-400 hover:text-white">
+                    +237-671593-128
+                </a>
+            </div>
+        </div>
+
+        <!-- Column 2: Quick Links & Social Icons -->
+        <div class="text-center md:text-left">
+            <h4 class="text-lg font-semibold text-white text-xl mb-4">Quick Links</h4>
+            <ul class="space-y-2 mb-4">
+                <li>
+                    <a href="/"
+                        class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
+                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/about"
+                        class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
+                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="/services"
+                        class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
+                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>Services
+                    </a>
+                </li>
+                <li>
+                    <a href="/contacts"
+                        class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
+                        <i class="bi bi-arrow-right text-blue-500 mr-2"></i>Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Column 4: Get In Touch -->
+        <div class="flex flex-col items-center">
+            <h4 class="text-lg font-semibold text-white mb-2">Need Assistance?</h4>
+            <p class="text-gray-400 mb-4 text-center">
+                Our team is here to help with any inquiries or support you may need.
+            </p>
+            <button id="footerContactBtn"
+                class="bg-blue-600 hover:bg-blue-500 text-white py-3 px-8 rounded-md font-medium transition">
+                Get In Touch
+            </button>
+        </div>
+    </div>
+    </div>
+    <div class="mt-8 text-center text-gray-500 text-sm">
+        &copy  <span id="current-year"></span> B&amp;P Data Consulting. All Rights Reserved.
+    </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<div id="backToTop" class="back-to-top" title="Back to top">
+    <i class="fas fa-chevron-up"></i>
+</div>
+
+<!-- PAGE-SPECIFIC SCRIPTS (optional) -->
+<script>
+
+    // Sticky Navbar Transition
+    const header = document.getElementById("header");
+    const logo = header.querySelector("a");
+    const navLinksContainer = document.getElementById("navLinks");
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menuBtn");
+    // const mobileMenu = document.getElementById("mobileMenu");
+
+
+    // Function to update header style based on scroll position
+    function updateHeaderStyle() {
+        if (window.scrollY > 10) {
+            header.classList.remove("bg-transparent");
+            header.classList.add("bg-white", "shadow-md");
+            logo.classList.remove("text-white");
+            logo.classList.add("text-gray-800");
+            navLinksContainer.classList.remove("text-white");
+            navLinksContainer.classList.add("text-gray-800");
+            menuBtn.classList.remove("text-white");
+            menuBtn.classList.add("text-gray-800");
+        } else {
+            header.classList.add("bg-transparent");
+            header.classList.remove("bg-white", "shadow-md");
+            logo.classList.add("text-white");
+            logo.classList.remove("text-gray-800");
+            navLinksContainer.classList.add("text-white");
+            navLinksContainer.classList.remove("text-gray-800");
+            menuBtn.classList.add("text-white");
+            menuBtn.classList.remove("text-gray-800");
+        }
+    }
+
+    // Listen for scroll events
+    window.addEventListener("scroll", updateHeaderStyle);
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Ensure header style is updated on page load
+        updateHeaderStyle
+
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        // Set the current year in the footer
+        document.getElementById('current-year').textContent = currentYear;
+    });
+
+    // Mobile Menu Drawer Functionality
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+    const closeMenuBtn = document.getElementById("closeMenu");
+
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.add("translate-x-0");
+        mobileMenuOverlay.classList.remove("hidden");
+    });
+
+    closeMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenuOverlay.classList.add("hidden");
+    });
+
+    mobileMenuOverlay.addEventListener("click", () => {
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenuOverlay.classList.add("hidden");
+    });
+
+    // Hide drawer when a mobile nav link is clicked
+    document.querySelectorAll(".nav-item-mobile").forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.remove("translate-x-0");
+            mobileMenuOverlay.classList.add("hidden");
+        });
+    });
+
+    // Back to Top Button
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add("visible");
+        } else {
+            backToTop.classList.remove("visible");
+        }
+    });
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Contact Modal Dialog: Open/Close for Footer button
+    const footerContactBtn = document.getElementById("footerContactBtn");
+    const contactModal = document.getElementById("contactModal");
+    const closeContactModalBtn = document.getElementById("closeContactModal");
+
+    footerContactBtn.addEventListener("click", () => {
+        contactModal.classList.add("active");
+    });
+
+    closeContactModalBtn.addEventListener("click", () => {
+        contactModal.classList.remove("active");
+    });
+
+    //Close modal when clicking outside the dialog
+    contactModal.addEventListener("click", (e) => {
+        if (e.target === contactModal) {
+            contactModal.classList.remove("active");
+        }
+    });
+
+    function closeMessageDialog() {
+        // Hide the overlay by adding a 'hidden' class (Tailwind) or setting display to 'none'
+        const overlay = document.getElementById('messageDialogOverlay');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+    }
+
+
+
+</script>
