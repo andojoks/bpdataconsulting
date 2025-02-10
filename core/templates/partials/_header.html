@@ -58,9 +58,21 @@
         <i class="fas fa-times"></i>
     </button>
     <ul class="flex flex-col p-4 space-y-2">
-        <li><a href="/" class="text-orange-500 nav-item-mobile">Home</a></li>
-        <li><a href="/about" class="nav-item-mobile hover:text-orange-500">About</a></li>
-        <li><a href="/services" class="nav-item-mobile hover:text-orange-500">Services</a></li>
+        <li class="py-1">
+            <a href="/" class="{% if active_page == 'home' %} text-orange-500 {% endif %}">
+                <span> Home</span>
+            </a>
+        </li>
+        <li class="py-1">
+            <a href="/about" class="{% if active_page == 'about' %} text-orange-500 {% endif %}">
+                <span>About</span>
+            </a>
+        </li>
+        <li class="py-1">
+            <a href="/services/" class="{% if active_page == 'services' %} text-orange-500 {% endif %}">
+                <span>Services</span>
+            </a>
+        </li>
         <!-- <li><a href="/contacts" class="nav-item-mobile hover:text-orange-500">Contact</a></li> -->
     </ul>
 </div>

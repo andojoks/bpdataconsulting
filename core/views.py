@@ -14,9 +14,13 @@ def index(request):
     # helper function to get session data to rebuild form 
     form, open_modal = restore_form_from_session(request.session, ContactForm)
     
+    # Get the first three services
+    services = Service.objects.all()[:3]
+    
     return render(request, 'index.html', {
         'form': form,
         'open_modal': open_modal,
+        'services' : services
     })
 
 def services(request):

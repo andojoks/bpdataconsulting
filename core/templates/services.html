@@ -53,25 +53,30 @@
     <!-- <h2 class="text-3xl font-bold text-center mb-6">Our Services</h2> -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
+      {% if services %}
       {% for service in services %}
       <a href="/services/{{ service.id }}"
-        class="block bg-gray-50 p-6 rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105"
+        class="block bg-gray-50 p-6 rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105 relative"
         id="service-{{ forloop.counter }}" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:100 }}"
         data-aos-duration="500">
-        <h3 class="text-xl font-semibold text-gray-800 mb-2 overflow-hidden whitespace-nowrap text-ellipsis"
-          style="display: block;">{{ service.name }}</h3>
+
+        <!-- Status Chip Positioned at the Top Right -->
+        <span
+          class="{% if service.status == 'active' %} bg-blue-600 {% else %} bg-red-500 {% endif %} text-white text-xs font-semibold absolute top-4 right-4 px-2.5 py-0.5 rounded-full">
+          {{ service.status|capfirst }}
+        </span>
+
+        <h3 class="text-xl font-semibold text-gray-800 mb-2  mt-2 overflow-hidden whitespace-nowrap text-ellipsis"
+          style="display: block;">{{ service.name|capfirst }}</h3>
         <p class="text-gray-600 mt-2 overflow-hidden text-ellipsis"
           style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; height: 3rem;">
           {{ service.description }}
         </p>
         <div class="mt-4">
-          <span class="text-2xl font-bold text-gray-800">${{ service.price }}</span>
+          <span class="text-2xl font-bold text-orange-600">${{ service.price }}</span>
           <span class="text-sm text-gray-500">/ month</span>
         </div>
-        <p class="mt-2 font-semibold {% if service.status == 'active' %} text-blue-600{% else %} text-red-500 {% endif %}"
-          id="status-{{ forloop.counter }}">
-          Status: {{ service.status|capfirst }}
-        </p>
+
         <p class="mt-2 text-gray-500">Available from: {{ service.date_included }}</p>
 
         <div id="promotion-{{ forloop.counter }}" style="{% if not service.on_promotion %}display:none;{% endif %}">
@@ -80,6 +85,7 @@
         </div>
       </a>
       {% endfor %}
+      {% endif %}
 
     </div>
   </div>
