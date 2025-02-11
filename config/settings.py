@@ -32,9 +32,17 @@ SECRET_KEY = 'django-insecure-feod(6m+&4)4pqd$rtnz9a-_nu5knlss^#a4xegfy@)sfyna*r
 DEBUG = False
 
 # ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
-ALLOWED_HOSTS = ['onrender.com','localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'bpdataconsulting.onrender.com',
+    'localhost',
+    '127.0.0.1'
+]
 
-CSRF_TRUSTED_ORIGINS=['https://bpdataconsulting.onrender.com','http://localhost', 'http://127.0.0.1']
+CSRF_TRUSTED_ORIGINS=[
+    'https://bpdataconsulting.onrender.com',
+    'http://localhost', 
+    'http://127.0.0.1'
+]
 
 
 # Application definition
