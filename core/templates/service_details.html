@@ -4,7 +4,13 @@
 
 {% block header %}
 <style>
-
+  #hero {
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    height: 50vh;
+    overflow: hidden;
+  }
 </style>
 {% endblock header %}
 
@@ -12,10 +18,15 @@
 
 {% include 'partials/_header.html' %}
 
-<!-- SERVICES INTRODUCTION -->
-<section class="bg-gray-100 mt-15">
-  <div class="max-w-7xl mx-auto px-4 py-6  text-center">
-    <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">{{ service.name|capfirst }}</h2>
+<!-- =============== HERO SECTION WITH VANTA.NET BACKGROUND =============== -->
+<section id="hero">
+  <!-- Vanta.js effect will be applied to this section -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="text-center text-white px-4" data-aos="fade-up">
+      <h1 class="text-3xl sm:3xl  md:text-6xl font-bold md:mb-4">
+        {{ service.name|capfirst }}
+      </h1>
+    </div>
   </div>
 </section>
 
@@ -78,7 +89,7 @@
               <a href="mailto:info@bpdataconsulting.com" class="icon">
                 <i class="fas fa-envelope text-2xl transition-transform transform hover:scale-120"></i>
               </a>
-              <a href="tel:+237671593128" class="icon">
+              <a href="tel:+13025655865" class="icon">
                 <i class="fas fa-phone-alt text-2xl transition-transform transform hover:scale-120"></i>
               </a>
               <a href="https://www.google.com/maps?q=First+Floor,+Afriland+Building,+Marché+Ndogpassi+3,+Village+-+Douala"
@@ -106,8 +117,8 @@
 {% block script %}
 <!-- AOS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
 
 <script>
 
@@ -120,6 +131,20 @@
     });
   });
 
+  VANTA.GLOBE({
+    el: "#hero",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x7393B3,
+    color2: 0x71797E, //0xA9A9A9, //0xffffff,           // Whitish net lines
+    backgroundColor: 0x0d1b2a, // Dark shade of primary blue
+  })
+
   // Sticky Navbar Transition
   const header = document.getElementById("header");
   const logo = header.querySelector("a");
@@ -129,7 +154,7 @@
   // Function to update header style based on scroll position
   function updateHeaderStyle() {
     if (window.scrollY > 10) {
-      header.classList.remove("bg-gray-900");
+      header.classList.remove("bg-transparent");
       header.classList.add("bg-white", "shadow-md");
       logo.classList.remove("text-white");
       logo.classList.add("text-gray-800");
@@ -138,7 +163,7 @@
       menuBtn.classList.remove("text-white");
       menuBtn.classList.add("text-gray-800");
     } else {
-      header.classList.add("bg-gray-900");
+      header.classList.add("bg-transparent");
       header.classList.remove("bg-white", "shadow-md");
       logo.classList.add("text-white");
       logo.classList.remove("text-gray-800");

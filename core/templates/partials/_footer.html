@@ -34,19 +34,37 @@
       - Or you want to open it by button click (front-end JavaScript)
   -->
 <div id="contactModal" class="modal-overlay {% if open_modal %}active{% endif %}">
-    <div class="bg-white rounded-lg shadow-2xl p-8 max-w-xl w-full mx-4 relative" data-aos="zoom-in">
+    <div class="bg-white rounded-lg shadow-2xl p-4 max-w-xl w-full mx-4 relative" data-aos="zoom-in">
         <!-- Close button -->
-        <div class="relative sticky top-10 bg-white">
-            <button id="closeContactModal"
-                class="absolute right-0 text-gray-500 hover:text-gray-800 focus:outline-none">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="text-2xl font-bold mb-6 text-center">Get In Touch</h2>
+        <div class="sticky top-0 p-2 bg-white">
+            <div class="relative mb-1">
+                <button id="closeContactModal"
+                    class="absolute right-0 text-gray-500 hover:text-gray-800 focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2 class="text-2xl font-bold text-center">Get In Touch</h2>
+
+            </div>
+
+            <div class="flex justify-center space-x-4 mb-2">
+                <a href="mailto:info@bpdataconsulting.com" class="icon">
+                    <i class="fas fa-envelope text-2xl transition-transform transform hover:scale-120"></i>
+                </a>
+                <a href="tel:+13025655865" class="icon">
+                    <i class="fas fa-phone-alt text-2xl transition-transform transform hover:scale-120"></i>
+                </a>
+                <a href="https://www.google.com/maps?q=First+Floor,+Afriland+Building,+Marché+Ndogpassi+3,+Village+-+Douala"
+                    target="_blank" class="icon">
+                    <i class="fas fa-map-marker-alt text-2xl transition-transform transform hover:scale-120"></i>
+                </a>
+            </div>
+
         </div>
 
 
         <!-- If the view passed in 'form', use it; otherwise create an empty fallback form -->
         <div class="flex-1 overflow-y-auto p-1" style="max-height:90vh">
+
             <form action="{% url 'create_contact' %}" method="POST" class="space-y-4">
                 {% csrf_token %}
 
@@ -147,8 +165,8 @@
             </div>
             <div class="flex items-center">
                 <i class="fas fa-phone-alt text-xl mr-3"></i>
-                <a href="tel:+237671593128" class="text-gray-400 hover:text-white">
-                    +237-671593-128
+                <a href="tel:+13025655865" class="text-gray-400 hover:text-white">
+                    +1 302-565-5865
                 </a>
             </div>
         </div>
@@ -176,7 +194,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/contacts"
+                    <a href="/contact_us"
                         class="text-gray-400 hover:text-white flex items-center justify-center md:justify-start">
                         <i class="fa fa-arrow-right text-blue-500 mr-2"></i>Contact Us
                     </a>
