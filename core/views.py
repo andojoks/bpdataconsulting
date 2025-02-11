@@ -14,8 +14,7 @@ def index(request):
     # helper function to get session data to rebuild form 
     form, open_modal = restore_form_from_session(request.session, ContactForm)
     
-    # Get the first three services
-    services = Service.objects.all()[:3]
+    services = Service.objects.all()
     
     return render(request, 'index.html', {
         'form': form,
@@ -43,14 +42,37 @@ def services(request):
 
 def service_detail(request, service_id):
     service = get_object_or_404(Service, id=service_id)
-    return render(request, 'service_details.html', {'service': service})
+
+    services = Service.objects.all()
+
+    return render(request, 'service_details.html', {
+        'service': service,
+        'services' : services
+    })
 
 def about(request):
     form, open_modal = restore_form_from_session(request.session, ContactForm)
     
+    services = Service.objects.all()
+
     return render(request, 'about.html', {
         'form': form,
         'open_modal': open_modal,
+        'services' : services,
+        'limited_services' : services[:3]    # Slice the first 3 services
+    })
+
+
+def contact_us(request):
+    form, open_modal = restore_form_from_session(request.session, ContactForm)
+    
+    services = Service.objects.all()
+
+    return render(request, 'contact_us.html', {
+        'form': form,
+        'open_modal': open_modal,
+        'services' : services,
+        'limited_services' : services[:3]    # Slice the first 3 services
     })
 
 def create_contact(request):

@@ -11,69 +11,138 @@
 
         <!-- Desktop Menu -->
         <ul id="navLinks" class="hidden md:flex space-x-6 font-medium transition-colors duration-300">
-            <li>
-                <a href="/" class="{% if active_page == 'home' %}
-                      bg-orange-500 py-2 px-4 rounded-full  text-white
-                    {% else %}
-                      hover:text-orange-500
-                    {% endif %}">
-                    Home
-                </a>
+            <li class="flex flex-row items-center">
+                <a href="/"
+                    class=" py-1 px-2 {% if active_page == 'home' %} bg-orange-500 rounded-full text-white {% else %} hover:text-orange-500 {% endif %}">Home</a>
             </li>
-            <li>
-                <a href="/about" class="{% if active_page == 'about' %}
-                      bg-orange-500 py-2 px-4 rounded-full  text-white
-                    {% else %}
-                      hover:text-orange-500
-                    {% endif %}">
-                    About
-                </a>
+            <li class="flex flex-row items-center">
+                <a href="/about"
+                    class="py-1 px-2 {% if active_page == 'about' %} bg-orange-500  rounded-full text-white {% else %} hover:text-orange-500 {% endif %}">About</a>
             </li>
-            <li>
-                <a href="/services/" class="{% if active_page == 'services' %}
-                      bg-orange-500 py-2 px-4 rounded-full  text-white
-                    {% else %}
-                      hover:text-orange-500
-                    {% endif %}">
-                    Services
-                </a>
+            <li class="relative">
+                <button id="servicesDropdownButton"
+                    class="flex items-center {% if active_page == 'services' %} bg-orange-500 text-white {% else %} hover:text-orange-500 {% endif %} py-1 px-2 rounded-full">
+                    <span class="">
+                        Services
+                        <i id="chevronIcon"
+                            class="fas fa-chevron-down ml-2 transition-transform duration-300 ease-in-out"></i>
+                    </span>
+                </button>
+                <div id="servicesDropdown"
+                    class="hidden absolute overflow-y-auto max-h-[50vh] right-0 w-80 bg-white shadow-lg rounded-lg mt-4 p-4 z-10">
+                    <ul class="space-y-2">
+                        {% if services %}
+                        <li>
+                            <a href="/services/" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">View all
+                                Services</a>
+                        </li>
+                        {% for service in services %}
+                        <li>
+                            <a href="/services/{{ service.id }}"
+                                class="block px-4 py-2 text-black hover:bg-gray-200 rounded">
+                                {{ service.name|capfirst }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
             </li>
-            <!-- <li>
-                <a href="/contacts/" class="{% if active_page == 'contacts' %}
-                      bg-orange-500 py-2 px-4 rounded-full  text-white
-                    {% else %}
-                      hover:text-orange-500
-                    {% endif %}">
-                    Contact
-                </a>
-            </li> -->
+            <li class="flex flex-row items-center">
+                <a href="/contact_us"
+                    class="py-1 px-2 {% if active_page == 'contact_us' %} bg-orange-500  rounded-full text-white {% else %} hover:text-orange-500 {% endif %}">Contact
+                    Us</a>
+            </li>
+            <!-- Other menu items can go here -->
         </ul>
     </nav>
 </header>
 
 <!-- MOBILE MENU & OVERLAY -->
-<div id="mobileMenu" class="fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg transform -translate-x-full
-           transition-transform duration-300 ease-in-out md:hidden z-50">
-    <button id="closeMenu" class="p-4 focus:outline-none">
-        <i class="fas fa-times"></i>
-    </button>
-    <ul class="flex flex-col p-4 space-y-2">
-        <li class="py-1">
-            <a href="/" class="{% if active_page == 'home' %} text-orange-500 {% endif %}">
-                <span> Home</span>
-            </a>
-        </li>
-        <li class="py-1">
-            <a href="/about" class="{% if active_page == 'about' %} text-orange-500 {% endif %}">
-                <span>About</span>
-            </a>
-        </li>
-        <li class="py-1">
-            <a href="/services/" class="{% if active_page == 'services' %} text-orange-500 {% endif %}">
-                <span>Services</span>
-            </a>
-        </li>
-        <!-- <li><a href="/contacts" class="nav-item-mobile hover:text-orange-500">Contact</a></li> -->
-    </ul>
+<div id="mobileMenu"
+    class="fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-50">
+    <div class="flex justify-end sticky top-0">
+        <button id="closeMenu" class="p-4 focus:outline-none">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto max-h-screen"> <!-- Ensure maximum height and scrolling -->
+        <ul class="flex flex-col p-4 space-y-2">
+            <li class="py-1">
+                <a href="/"
+                    class="block px-4 py-2 hover:bg-gray-200 rounded {% if active_page == 'home' %} bg-orange-500 text-white {% endif %}">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="py-1">
+                <a href="/about"
+                    class="block px-4 py-2 hover:bg-gray-200 rounded {% if active_page == 'about' %} bg-orange-500 text-white {% endif %}">
+                    <span>About</span>
+                </a>
+            </li>
+            <li class="py-1 sticky top-0 z-10"> <!-- Make Services sticky -->
+                <button id="servicesToggle"
+                    class=" sticky top-0 block w-full text-left px-4 py-2 hover:bg-gray-200 rounded {% if active_page == 'services' %} bg-orange-500 text-white {% endif %}">
+                    <span>Services</span>
+                    <i id="mobileChevronIcon"
+                        class="fas fa-chevron-down transition-transform duration-300 ease-in-out"></i>
+                </button>
+                <ul id="servicesList" class="hidden pl-4 space-y-1">
+                    {% if services %}
+                    {% for service in services %}
+                    <li>
+                        <a href="/services/{{ service.id }}" class="block px-4 py-2 hover:bg-gray-200 rounded">
+                            {{ service.name|capfirst }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </li>
+            <li class="py-1">
+                <a href="/"
+                    class="block px-4 py-2 hover:bg-gray-200 rounded {% if active_page == 'contact_us' %} bg-orange-500 text-white {% endif %}">
+                    <span>Contact Us</span>
+                </a>
+            </li>
+            <!-- Add other menu items here -->
+        </ul>
+    </div>
 </div>
+
 <div id="mobileMenuOverlay" class="fixed inset-0 bg-black opacity-50 hidden md:hidden z-40"></div>
+
+
+
+<script>
+    const servicesDropdownButton = document.getElementById('servicesDropdownButton');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    const chevronIcon = document.getElementById('chevronIcon');
+
+    servicesDropdownButton.addEventListener('click', () => {
+        servicesDropdown.classList.toggle('hidden');
+        chevronIcon.classList.toggle('rotate-180');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!servicesDropdownButton.contains(event.target) && !servicesDropdown.contains(event.target)) {
+            servicesDropdown.classList.add('hidden');
+            chevronIcon.classList.remove('rotate-180');
+        }
+    });
+
+</script>
+
+<!-- toggle services in mobile menu -->
+
+<script>
+    const servicesToggle = document.getElementById('servicesToggle');
+    const servicesList = document.getElementById('servicesList');
+    const mobileChevronIcon = document.getElementById('mobileChevronIcon');
+
+    servicesToggle.addEventListener('click', () => {
+        servicesList.classList.toggle('hidden');
+        mobileChevronIcon.classList.toggle('rotate-180'); // Rotate the chevron icon
+    });
+</script>
