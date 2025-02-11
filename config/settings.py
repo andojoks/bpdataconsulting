@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'core' / 'templates'],
+        'DIRS': [ os.path.join(BASE_DIR, 'core', 'templates') ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
     # 'default': {
     #     'ENGINE': os.getenv('DB_ENGINE'),
@@ -129,12 +130,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+STATIC_URL = 'static/'  # this is the url from which static elements can be accessed
 
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
 
 # For production builds
-STATIC_ROOT = BASE_DIR / 'staticfiles' 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # this is the folder where all static files are going to be stored after we run collectstatic command
 
+
+# Whitenoise settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
