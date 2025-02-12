@@ -19,7 +19,8 @@ def index(request):
     return render(request, 'index.html', {
         'form': form,
         'open_modal': open_modal,
-        'services' : services
+        'services' : services,
+        'limited_services' : services[:3]    # Slice the first 3 services
     })
 
 def services(request):
@@ -59,7 +60,6 @@ def about(request):
         'form': form,
         'open_modal': open_modal,
         'services' : services,
-        'limited_services' : services[:3]    # Slice the first 3 services
     })
 
 
@@ -72,7 +72,6 @@ def contact_us(request):
         'form': form,
         'open_modal': open_modal,
         'services' : services,
-        'limited_services' : services[:3]    # Slice the first 3 services
     })
 
 def create_contact(request):
@@ -90,7 +89,7 @@ def create_contact(request):
             form_instance = form.save(commit=False)
             form_instance.save()  # Save the form data, including  setting contact_date automatically (per our form)
 
-            messages.success(request, "Thank you! Your message has been sent.")
+            messages.success(request, "Your message has been successfully sent. Our team will review your inquiry and get back to you.")
 
             return redirect(next_url)
         else:
