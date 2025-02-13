@@ -30,9 +30,9 @@ SECRET_KEY = 'django-insecure-feod(6m+&4)4pqd$rtnz9a-_nu5knlss^#a4xegfy@)sfyna*r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') 
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost,bpdataconsulting.onrender.com').split(',') 
 
-CSRF_TRUSTED_ORIGINS=  os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost,http://127.0.0.1').split(',')
+CSRF_TRUSTED_ORIGINS=  os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost,http://127.0.0.1,https://bpdataconsulting.onrender.com').split(',')
 
 # Application definition
 
