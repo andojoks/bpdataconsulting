@@ -1,6 +1,6 @@
-# bpdata Consulting
+# B&P Data Consulting
 
-Welcome to the bpdata Consulting website project. This application is built on the Django framework using Python 3.13 and serves as the foundational platform for bpdata Consulting’s online presence. The project is designed to efficiently support both development and production environments.
+Welcome to the B&P Data Consulting website project. This application is built on the Django framework using Python 3.13 and serves as the foundational platform for bpdata Consulting’s online presence. The project is designed to efficiently support both development and production environments.
 
 ---
 
