@@ -12,7 +12,6 @@ Welcome to the bpdata Consulting website project. This application is built on t
 - [Development](#development)
 - [Production](#production)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
@@ -20,11 +19,12 @@ Welcome to the bpdata Consulting website project. This application is built on t
 
 ## Features
 
-- **Responsive Design:** Mobile-first approach ensuring usability across devices.
-- **Admin Interface:** Robust Django admin for managing content and user data.
+- **Responsive Design:** A mobile-first approach ensuring usability across all devices.
+- **Admin Interface:** A robust Django admin for managing content and user data efficiently.
 - **Authentication:** Secure user registration, login, and profile management.
-- **Consulting Services:** Detailed pages and features highlighting consulting services.
-- **Scalable Architecture:** Easily extendable with Django apps and REST APIs if needed.
+- **Consulting Services:** Detailed pages and features highlighting the range of consulting services offered.
+- **Scalable Architecture:** Easily extendable with Django apps and REST APIs as needed.
+- **Security:** Built-in protections against common web vulnerabilities.
 
 ---
 
@@ -41,7 +41,7 @@ Welcome to the bpdata Consulting website project. This application is built on t
 ### Prerequisites
 
 - **Python 3.13:** Ensure you have Python 3.13 installed.
-- **pip:** Python package installer.
+- **pip:** Python package installer must be available.
 - **virtualenv** (recommended): To create an isolated Python environment.
 
 ### Steps
@@ -72,21 +72,20 @@ Welcome to the bpdata Consulting website project. This application is built on t
 
 4. **Configure Environment Variables:**
 
-   Create a `.env` file from `.env.example` in the project root and fill with your configuration settings. :
+   Create a `.env` file from `.env.example` in the project root and populate it with your configuration settings:
 
    ```env
+   DEBUG=True
+   ALLOWED_HOSTS=localhost,127.0.0.1
+   CSRF_TRUSTED_ORIGINS=http://localhost,http://127.0.0.1
 
-    DEBUG=True
-    ALLOWED_HOSTS=localhost,127.0.0.1
-    CSRF_TRUSTED_ORIGINS=http://localhost,http://127.0.0.1
-
-    # Database Configuration
-    DB_ENGINE=django.db.backends.postgresql
-    DB_NAME=
-    DB_USER=
-    DB_PASSWORD=
-    DB_HOST=
-    DB_PORT=5432
+   # Database Configuration
+   DB_ENGINE=django.db.backends.postgresql
+   DB_NAME=
+   DB_USER=
+   DB_PASSWORD=
+   DB_HOST=
+   DB_PORT=5432
    ```
 
 5. **Apply Migrations:**
@@ -122,28 +121,6 @@ python manage.py runserver
 Then, open your browser and navigate to [http://127.0.0.1:8000](http://127.0.0.1:8000) to view the site.
 
 ---
-
-## Production
-
-For a production environment, it is recommended to use a robust WSGI server like Gunicorn.
-
-### Steps for Production Deployment:
-
-1. **Prepare Static Files:**
-
-   Before deploying, collect all static files:
-
-   ```bash
-   python manage.py collectstatic
-   ```
-
-2. **Update environment variables:**
-  
-   Update the environment variables, by setting debug to false, and
-
-## Contributing
-
-We welcome contributions to this project. Please see the [Contributing Guidelines](CONTRIBUTING.md) for more information.
 
 ## License
 
