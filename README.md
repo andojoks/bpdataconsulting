@@ -10,7 +10,6 @@ Welcome to the B&P Data Consulting website project. This application is built on
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Development](#development)
-- [Production](#production)
 - [Deployment](#deployment)
 - [License](#license)
 - [Contact](#contact)
@@ -88,11 +87,12 @@ Welcome to the B&P Data Consulting website project. This application is built on
    DB_PORT=5432
    ```
 
-5. **Apply Migrations:**
+5. **Make Migrations and apply Apply Then:**
 
-   Set up your database by running:
+  Generate any new migration files (if there are changes) and apply them to set up the database schema. run the following commands in succession.
 
    ```bash
+   python manage.py makemigrations
    python manage.py migrate
    ```
 
@@ -104,6 +104,7 @@ Welcome to the B&P Data Consulting website project. This application is built on
    python manage.py createsuperuser
    ```
 
+  Follow the prompts to enter your username, email, and password.
 ---
 
 ## Development
