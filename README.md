@@ -32,7 +32,7 @@ Welcome to the B&P Data Consulting website project. This application is built on
 
 - **Backend:** [Django](https://www.djangoproject.com/) with Python 3.13
 - **Frontend:** HTML5, CSS3, JavaScript
-- **Database:** PostgreSQL
+- **Database:** PostgreSQL 17
 
 ---
 
