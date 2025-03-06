@@ -39,7 +39,7 @@ Welcome to the B&P Data Consulting website project. This application is built on
 
 ### Prerequisites
 
-- **Python 3.13:** Ensure you have Python 3.8.10 installed.
+- **Python 3.8.10:** Ensure you have Python 3.8.10 installed.
 - **pip:** Python package installer must be available.
 - **virtualenv** (recommended): To create an isolated Python environment.
 
