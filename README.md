@@ -29,9 +29,9 @@ Welcome to the B&P Data Consulting website project. This application is built on
 
 ## Tech Stack
 
-- **Backend:** [Django](https://www.djangoproject.com/) with Python 3.13
+- **Backend:** [Django](https://www.djangoproject.com/) 3.2 with Python 3.8.10
 - **Frontend:** HTML5, CSS3, JavaScript
-- **Database:** PostgreSQL 17
+- **Database:** PostgreSQL 10.3
 
 ---
 
@@ -39,7 +39,7 @@ Welcome to the B&P Data Consulting website project. This application is built on
 
 ### Prerequisites
 
-- **Python 3.13:** Ensure you have Python 3.13 installed.
+- **Python 3.13:** Ensure you have Python 3.8.10 installed.
 - **pip:** Python package installer must be available.
 - **virtualenv** (recommended): To create an isolated Python environment.
 
